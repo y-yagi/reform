@@ -38,6 +38,7 @@ module Reform
                     nested_errors = v.select { |attr_key, val| attr_key.is_a?(Integer) && val.is_a?(Array) && val.any? }
                     v = nested_errors.to_a if nested_errors.any?
                   end
+                  v = v.to_a if v.respond_to?(:to_a)
                   v.is_a?(Array)
                 }.to_h
       end
